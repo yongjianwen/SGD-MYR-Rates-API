@@ -39,5 +39,5 @@ def get_cimb_rates():
     return rate if valid else 'N/A'
 
 
-res = get_cimb_rates()
-print(res)
+# res = get_cimb_rates()
+# print(res)

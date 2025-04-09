@@ -8,6 +8,7 @@ click==8.1.8
 colorama==0.4.6
 Deprecated==1.2.14
 Flask==3.1.0
+flask-cors==5.0.1
 gunicorn==23.0.0
 h11==0.14.0
 idna==3.10

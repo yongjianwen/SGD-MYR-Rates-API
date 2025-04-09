@@ -1,8 +1,12 @@
 import requests
 from bs4 import BeautifulSoup
 from flask import Flask
+from flask_cors import CORS
 
 app = Flask(__name__)
+
+CORS(app)
+# CORS(app, resources={r"/*": {"origins": ["https://your-frontend.com"]}}
 
 
 @app.route('/')
@@ -38,6 +42,9 @@ def get_cimb_rates():
 
     return rate if valid else 'N/A'
 
+# For development only, do not use for production
+# if __name__ == "__main__":
+#     app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8000)))
 
 # res = get_cimb_rates()
 # print(res)

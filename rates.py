@@ -9,7 +9,7 @@ app = Flask(__name__)
 # CORS(app)
 CORS(app, resources={r"/*": {
     "origins": [
-        "http://yongjianwen-static.s3-website-ap-southeast-1.amazonaws.com/",
+        "http://yongjianwen-static.s3-website-ap-southeast-1.amazonaws.com",
         "http://127.0.0.1:5500"
     ]
 }})

@@ -10,15 +10,14 @@ app = Flask(__name__)
 CORS(app, resources={r"/*": {
     "origins": [
         "http://yongjianwen-static.s3-website-ap-southeast-1.amazonaws.com/",
-        "http://127.0.0.1/"
+        "http://127.0.0.1:5500"
     ]
 }})
 
 
 @app.route('/rates')
 def rates():
-    # sgd = request.form.get('sgd', 1000)
-    sgd = 1000
+    sgd = request.form.get('sgd', 1000)
     return {
         'cimb': get_cimb_rates(sgd),
         'wise': get_wise_rates(sgd)

@@ -15,7 +15,7 @@ CORS(app, resources={r"/*": {
 }})
 
 
-@app.route('/rates/<sgd>')
+@app.route('/rates/<int:sgd>')
 def rates(sgd):
     return {
         'cimb': get_cimb_rates(sgd),

@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from flask import Flask, request
+from flask import Flask
 from flask_cors import CORS
 from requests.exceptions import RequestException
 
@@ -15,9 +15,8 @@ CORS(app, resources={r"/*": {
 }})
 
 
-@app.route('/rates')
-def rates():
-    sgd = request.form.get('sgd', 1000)
+@app.route('/rates/<sgd>')
+def rates(sgd):
     return {
         'cimb': get_cimb_rates(sgd),
         'wise': get_wise_rates(sgd)
@@ -106,5 +105,12 @@ def get_wise_rates(sgd):
     return res
 
 
+def local_rates(sgd=1000):
+    return {
+        'cimb': get_cimb_rates(sgd),
+        'wise': get_wise_rates(sgd)
+    }
+
+
 if __name__ == '__main__':
-    print(rates())
+    print(local_rates())

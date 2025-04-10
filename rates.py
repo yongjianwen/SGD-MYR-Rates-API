@@ -19,7 +19,8 @@ CORS(app, resources={r"/*": {
 def rates(sgd):
     return {
         'cimb': get_cimb_rates(sgd),
-        'wise': get_wise_rates(sgd)
+        'wise': get_wise_rates(sgd),
+        'panda': get_panda_rates(sgd)
     }
 
 
@@ -105,11 +106,28 @@ def get_wise_rates(sgd):
     return res
 
 
+def get_panda_rates(sgd):
+    res = -1
+
+    try:
+        panda_url = 'https://prod.pandaremit.com/pricing/rate/query/diamond'
+        data = {
+            "sourceCurrency": "SGD",
+            "targetCurrency": "MYR",
+            "requestSource": "1"
+        }
+        r = requests.post(panda_url, json=data)
+        res = float(r.json().get('model').get('huiOut')) * sgd
+    except RequestException as e:
+        print(e)
+    except AttributeError as e:
+        print(e)
+
+    return res
+
+
 def local_rates(sgd=1000):
-    return {
-        'cimb': get_cimb_rates(sgd),
-        'wise': get_wise_rates(sgd)
-    }
+    return rates(sgd)
 
 
 if __name__ == '__main__':

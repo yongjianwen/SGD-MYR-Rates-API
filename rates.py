@@ -15,6 +15,11 @@ CORS(app, resources={r"/*": {
 }})
 
 
+@app.route('/')
+def home():
+    return {'status': 'Flask API running on Hugging Face!'}
+
+
 @app.route('/rates/<int:sgd>')
 def rates(sgd):
     return {
@@ -126,9 +131,10 @@ def get_panda_rates(sgd):
     return res
 
 
-def local_rates(sgd=1000):
-    return rates(sgd)
-
-
-if __name__ == '__main__':
-    print(local_rates())
+# def local_rates(sgd=1000):
+#     return rates(sgd)
+#
+#
+# if __name__ == '__main__':
+#     print(local_rates())
+#     app.run(host='0.0.0.0', port=7860)  # Must use port 7860 (Gradio's default), use only for dev

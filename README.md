@@ -1,8 +1,8 @@
 ---
 title: Rates
-emoji: 🏢
+emoji: 💻
 colorFrom: purple
-colorTo: purple
+colorTo: red
 sdk: docker
 pinned: false
 ---

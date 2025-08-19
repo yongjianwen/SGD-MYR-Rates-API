@@ -22,11 +22,13 @@ def home():
 
 @app.route('/rates/<int:sgd>')
 def rates(sgd):
-    return {
+    res = {
         'cimb': get_cimb_rates(sgd),
         'wise': get_wise_rates(sgd),
         'panda': get_panda_rates(sgd)
     }
+    print(res)
+    return res
 
 
 def get_cimb_rates(sgd):
